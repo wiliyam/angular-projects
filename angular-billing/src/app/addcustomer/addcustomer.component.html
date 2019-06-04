@@ -1,0 +1,154 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div *ngIf="open" class="container">
+  <h2 class="title">Add customer here!</h2>
+  <hr />
+
+  <form [formGroup]="addCustomerForm" (ngSubmit)="send()">
+    <h4 class="subtitle ">Personal-detail</h4>
+    <div class="form-group">
+      <label>Name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        [class.in-valid]="
+          addCustomerForm.get('name').invalid &&
+          addCustomerForm.get('name').touched
+        "
+      />
+      <div class="text-danger" *ngIf="addCustomerForm.get('name').touched">
+        <div
+          class="text-danger"
+          *ngIf="addCustomerForm.get('name').errors?.required"
+        >
+          Name is Required
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="email"
+        class="form-control"
+        formControlName="email"
+        [class.in-valid]="
+          addCustomerForm.get('email').invalid &&
+          addCustomerForm.get('email').touched
+        "
+      />
+      <div class="text-danger" *ngIf="addCustomerForm.get('email').touched">
+        <div
+          class="text-danger"
+          *ngIf="addCustomerForm.get('email').errors?.required"
+        >
+          Email is Required
+        </div>
+        <small
+          class="text-danger"
+          *ngIf="addCustomerForm.get('email').errors?.email"
+          >Enter valid email</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Mobile</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="mobile"
+        maxlength="10"
+        onkeyup="this.value=this.value.replace(/[^\d]/,'')"
+      />
+      <p
+        *ngIf="
+          addCustomerForm.get('mobile').errors?.required &&
+          addCustomerForm.get('mobile').touched
+        "
+        class="error-msg"
+      >
+        Mobile No. required!
+      </p>
+      <p
+        *ngIf="addCustomerForm.get('mobile').errors?.pattern"
+        class="error-msg"
+      >
+        Enter valid phone number!
+      </p>
+    </div>
+    <hr />
+    <h4 class="subtitle ">Address-detail</h4>
+    <div>
+      <div class="form-group">
+        <label>Country</label>
+        <select
+          (change)="selectChangeState($event)"
+          class="form-control"
+          formControlName="country"
+        >
+          <option *ngFor="let con of c; let i = index" [value]="c[i].id">{{
+            c[i].name
+          }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>State</label>
+        <select
+          (change)="selectChangeCity($event)"
+          class="form-control"
+          formControlName="state"
+        >
+          <option *ngFor="let st of newState" [value]="st.id">{{
+            st.name
+          }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <select class="form-control" formControlName="city">
+          <option *ngFor="let ct of newCity" [value]="ct.id">{{
+            ct.name
+          }}</option>
+        </select>
+      </div>
+    </div>
+    <hr />
+    <h4 class="subtitle ">Bank Details</h4>
+    <div>
+      <div class="form-group">
+        <label>Ac No.</label>
+        <input type="text" class="form-control" formControlName="acno" />
+      </div>
+
+      <div class="form-group">
+        <label>ISFC Code</label>
+        <input type="text" class="form-control" formControlName="ifsc" />
+      </div>
+
+      <div class="form-group">
+        <label>GST No.</label>
+        <input type="text" class="form-control" formControlName="gst" />
+      </div>
+
+      <div class="form-group">
+        <label>Form Name</label>
+        <input type="text" class="form-control" formControlName="formname" />
+      </div>
+    </div>
+    <h4 class="subtitle ">Profile</h4>
+
+    <button
+      [disabled]="
+        name.errors?.required ||
+        email.errors?.required ||
+        addCustomerForm.controls.mobile.errors?.required ||
+        addCustomerForm.controls.mobile.errors?.pattern ||
+        email.errors?.email
+      "
+      class="btn btn-primary"
+    >
+      Add
+    </button>
+    <button class="btn btn-primary ml-2" (click)="clearForm()">Reset</button>
+  </form>
+  <br />
+</div>

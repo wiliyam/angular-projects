@@ -1,0 +1,91 @@
+<!--The content below is only a placeholder and can be replaced.
+<div style="text-align:center" class="jumbotron">
+  <h1 class="title">{{ title }}</h1>
+  <p class="subtitle">Create Your Bill With Gst</p>
+</div>
+<div class="container-fluid">
+  <button (click)="loadAddCustomer()" type="button" class="btn btn-primary">
+    Add Customer
+  </button>
+  <button (click)="loadListCustomer()" type="button" class="btn btn-info ml-4">
+    List Customer
+  </button>
+</div>
+<div class="container-fluid jumbotron">
+  <app-addcustomer *ngIf="loadAddcustomer"></app-addcustomer>
+  <app-listcustomer *ngIf="loadListcustomer"></app-listcustomer>
+</div>
+
+<router-outlet></router-outlet>-->
+
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar -->
+  <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">Comapny name</div>
+    <div class="list-group list-group-flush">
+      <a
+        routerLink="/dashboard"
+        routerLinkActive="active"
+        class="list-group-item list-group-item-action"
+        >Dashboard</a
+      >
+      <a
+        routerLink="/companyinfo"
+        routerLinkActive="active"
+        class="list-group-item list-group-item-action "
+        >Company Info</a
+      >
+    </div>
+    <div class="dropdown">
+      <button
+        type="button"
+        class="list-group-item list-group-item-action "
+        data-toggle="dropdown"
+        routerLinkActive="active"
+      >
+        Customers
+      </button>
+      <div class="dropdown-menu">
+        <a
+          class="dropdown-item"
+          routerLink="/addcustomer"
+          routerLinkActive="active"
+          >Add Customer</a
+        >
+        <a
+          class="dropdown-item"
+          routerLink="/listcustomer"
+          routerLinkActive="active"
+          >List customer</a
+        >
+      </div>
+    </div>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <button class="btn btn-primary" id="menu-toggle">Menu</button>
+    </nav>
+
+    <div class="container-fluid">
+      <!-- main body -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+</script>

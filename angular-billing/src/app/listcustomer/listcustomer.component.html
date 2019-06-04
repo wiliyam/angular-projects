@@ -1,0 +1,249 @@
+<table class="table">
+  <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>View</th>
+    <th>Update</th>
+    <th>Delete</th>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let customer of customers; let i = index">
+
+      <td>{{i+1}}</td>
+      <td>{{customer.name}}</td>
+      <td>{{customer.email}}</td>
+      <td><button class="btn btn-success" (click)='onView(customer)' data-toggle="modal" data-target="#viewModal"
+          data="customer">View</button>
+      </td>
+      <td><button class="btn btn-info" (click)='onView(customer)' data-toggle="modal" data-target="#updateModal"
+          data="customer">Update</button></td>
+      <td><button class="btn btn-danger ml-2" data-toggle="modal" data-target='#deleteModal'>Delete</button></td>
+      <!--delete modal-->
+
+      <div class="modal" tabindex="-1" id='deleteModal' role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-danger">Delete</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p class="text-danger">Are Sure Want to delete???</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)='onDelete(customer._id)'
+                data-dismiss="modal">Delete</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tr>
+
+</table>
+
+
+
+<!--  View Modal -->
+<div class="container">
+  <!-- The Modal -->
+  <div class="modal" id="viewModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" class='title' ngmodel>View Customer</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h4 class="subtitle ">Personal-detail</h4>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled
+              value={{name}}>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled
+              value={{email}}>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Mobile</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled
+              value={{mobile}}>
+          </div>
+          <h4 class="subtitle ">Address-detail</h4>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">City</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled
+              value={{city}}>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">State</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled
+              value={{state}}>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Country</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled
+              value={{country}}>
+          </div>
+          <h4 class="subtitle ">Bank-detail</h4>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Ac-no</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled
+              value={{acno}}>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">IFSC</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled
+              value={{isfc}}>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Form-Name</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled
+              value={{formno}}>
+          </div>
+
+
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<!--  Update Modal -->
+<div class="container">
+  <!-- The Modal -->
+  <div class="modal" id="updateModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" class='title' ngmodel>Update Customer</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h4 class="subtitle ">Personal-detail</h4>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+              value={{name}} [(ngModel)]='name'>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+              value={{email}} [(ngModel)]='email'>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Mobile</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+              value={{mobile}} [(ngModel)]='mobile'>
+          </div>
+          <h4 class="subtitle ">Address-detail</h4>
+
+
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Country</span>
+            </div>
+            <select (change)="selectChangeState($event)" [(ngModel)]='countryId' class="form-control">
+              <option *ngFor="let con of c ; let i = index" [value]="c[i].id">{{c[i].name}}</option>
+            </select>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">State</span>
+            </div>
+            <select (change)="selectChangeCity($event)" class="form-control" ngModel>
+              <option selected>{{state}}</option>
+
+              <option *ngFor="let st of newState" [value]="st.id">{{st.name}}</option>
+            </select>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">City</span>
+            </div>
+            <select (change)="onCity($event)" class="form-control" ngModel>
+              <option selected>{{city}}</option>
+              <option *ngFor="let ct of newCity" value="{{ct.id}}">{{ct.name}}</option>
+            </select>
+          </div>
+          <h4 class="subtitle ">Bank-detail</h4>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Ac-no</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+              value={{acno}} [(ngModel)]='acno'>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">IFSC</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+              value={{ifsc}} [(ngModel)]='ifsc'>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Form-Name</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+              value={{formno}} [(ngModel)]='formno'>
+          </div>
+
+
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success " (click)='onUpdate()' data-dismiss="modal">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
