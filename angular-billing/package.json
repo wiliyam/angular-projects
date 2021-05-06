@@ -40,7 +40,7 @@
     "ngx-toastr": "^10.0.4",
     "rxjs": "^6.3.3",
     "tslib": "^1.9.0",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^3.9.0",
     "zone.js": "~0.8.26"
